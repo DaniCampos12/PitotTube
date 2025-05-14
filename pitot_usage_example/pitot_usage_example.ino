@@ -1,23 +1,25 @@
 #include "Pitot_library.h"
 #include <SoftwareSerial.h>
 
-//create a PITOT object 
+//crea el objeto principal
 PITOT pitotTube;
 
-//setup section 
 void setup() {
   Serial.begin(9600);
-  Serial.println("Sensor Initialization");
-  delay(1000);
+  Serial.println("Sensor Inicializado :)";
+  delay(1000); //esperamos un segundito para comenzar
   
-  //initialize it by calculating the offset once. Give number of iterations as an argument considering observed fluctuations.
-  pitotTube.offsetCalculation(10);
+  //inicia calculando el desplazamiento una vez
+  //da el número de iteraciones como argumento
+
+  pitotTube.offsetCalculation(10); // llamamos al esta función
+  //calcula un desplazamiento (offset) basado en 10 iteraciones 
+  //para mejorar la precisión de las mediciones.
 }
 
-//loop section
 void loop() {
-  pitotTube.PITOT_update();
+  pitotTube.Pitot_Actualizacion(); // ejecuta desde la librería
   
-//wait a little between measurements 
+  //este delay es para esperar un poco entre cada medición
   delay(500)
 }
